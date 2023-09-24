@@ -1,0 +1,20 @@
+
+
+.tf-custom .tf-nc {
+    border-color: #FFFFFF50;
+}
+
+.tf-custom .tf-nc:before,
+.tf-custom .tf-nc:after {
+    border-left-color: dodgerblue;
+    border-left-width: 2px;
+}
+
+.tf-custom li li:before {
+    border-top-color: dodgerblue;
+    border-top-width: 2px;
+}
+
+.form {
+    width: 100%;
+}

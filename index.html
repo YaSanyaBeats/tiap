@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://unpkg.com/treeflex/dist/css/treeflex.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+</head>
+<body >
+    <div class="wrapper text-bg-dark container">
+        <header class="header pt-5">
+            <h1>Гончаров, Хьюго, ИП-017</h1>
+        </header>
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2>Грамматика</h2>
+                <div class="row mt-2" id="gram-form">
+                    <div class="col-12 mt-2">
+                        <button class="btn btn-primary d-flex justify-content-center col-1" id="gram-row-button">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2>Режим работы</h2>
+                <div class="row mt-3">
+                    <div class="col-auto d-flex align-items-center">
+                        <span>Max:</span>
+                    </div>
+                    <div class="col-2">
+                        <input type="number" class="form-control" id="limit-input" value="1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="d-grid col-6 text-center">
+                <button class="btn btn-primary" id="start-button">Рассчёт</button>
+            </div>
+        </div>
+
+        <!-- Templates -->
+        <template id="gram-row">
+            <div class="row mt-2">
+                <div class="col-1">
+                    <input type="text" class="form-control gram-start">
+                </div>
+                <div class="col-auto d-flex align-items-center">
+                    <span>→</span>
+                </div>
+                <div class="col-1">
+                    <input type="text" class="form-control gram-way">
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary gram-col-button-add">+</button>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary gram-col-button-lambda">λ</button>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-danger gram-col-button-delete"><i class="bi bi-trash"></i></button>
+                </div>
+            </div>
+        </template>
+
+        <template id="gram-col">
+            <div class="col-auto d-flex align-items-center">
+                <span>|</span>
+            </div>
+            <div class="col-1">
+                <input type="text" class="form-control gram-way">
+            </div>
+        </template>
+
+        <template id="gram-col-lambda">
+            <div class="col-auto d-flex align-items-center">
+                <span>|</span>
+            </div>
+            <div class="col-1">
+                <input type="text" class="form-control gram-way" value="λ" disabled>
+            </div>
+        </template>
+
+        <div class="result tf-tree example tf-custom mt-5"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>
