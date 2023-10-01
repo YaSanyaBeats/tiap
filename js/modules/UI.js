@@ -8,6 +8,7 @@ function bindListenersOnForms() {
     //Wrappers
     const manualForm = document.querySelector('#manual-form');
     const gramForm = document.querySelector('#gram-form');
+    const resultWrapper = document.querySelector('.result');
 
     //Buttons
     const gramRowButton = document.querySelector('#gram-row-button');
@@ -15,6 +16,7 @@ function bindListenersOnForms() {
     //Inputs
     const limitInput = document.querySelector('#limit-input');
     const modeRadioInputs = document.querySelectorAll('.mode-radio');
+    const scaleRangeInput = document.querySelector('#scaleRangeInput');
 
     gramRowButton.addEventListener('click', (event) => {
         let gramRowContent = gramRowNode.content.cloneNode(true);
@@ -37,6 +39,10 @@ function bindListenersOnForms() {
 
         gramRowButton.parentElement.before(gramRowContent);
         
+    })
+
+    scaleRangeInput.addEventListener('input', (event) => {
+        resultWrapper.style.fontSize = scaleRangeInput.value + 'px';
     })
 }
 

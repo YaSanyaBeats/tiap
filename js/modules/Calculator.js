@@ -1,3 +1,14 @@
+function checkInArray(symbol, array) {
+    let result = false;
+    array.forEach((elem) => {
+        if(elem == symbol) {
+            result = true;
+        }
+    })
+
+    return result;
+}
+
 class Calculator{
     constructor(config) {
         this.setConfig(config);
@@ -5,9 +16,28 @@ class Calculator{
 
     setConfig(config) {
         this.config = config;
+        console.log(this.config);
     }
 
     start() {
+
+        for(let way in this.config.ways) {
+            if(!checkInArray(way, this.config.notTerm)) {
+                alert("Ошибка нетерминального алфавита");
+                return;
+            }
+            let innerWays = this.config.ways[way];
+            innerWays.forEach((innerWay) => {
+                let symbols = innerWay.split('');
+                symbols.forEach((symbol) => {
+                    if(!checkInArray(symbol, this.config.term) && !checkInArray(symbol, this.config.notTerm)) {
+                        alert("Ошибка терминального ошибка");
+                        return;
+                    }
+                })
+            })
+        }
+
         return this.calcAll();
     }
 
@@ -21,11 +51,24 @@ class Calculator{
         }
 
         let currWays = this.config.ways[way.slice(-1)];
+
+        if(!currWays) {
+            return tree;
+        }
         
         currWays.forEach((currWay) => {
             let currResult = result;
+            let isValue = true;
+
             if(currWay != 'λ') {
-                currResult += currWay.slice(0, 1);
+                for(let way in this.config.ways) {
+                    if(way == currWay.slice(0, -1)) {
+                        isValue = false;
+                    }
+                }
+                if(isValue) {
+                    currResult += currWay.slice(0, -1);
+                }
             }
             
             tree[currWay] = {
@@ -38,21 +81,35 @@ class Calculator{
 
     calcAll() {
         
-        let result = {
-            'S': {
-                result: '',
-            }
-        };
+        let result = {};
 
-        let currWays = this.config.ways['S'];
+        result[this.config.start] = {
+            result: ''
+        }
+
+        let currWays = this.config.ways[this.config.start];
 
         this.config.limit--;
 
         currWays.forEach((currWay) => {
-            result['S'][currWay] = {
-                result: currWay.slice(0, 1)
+            let currResult = '';
+            let isValue = true;
+
+            if(currWay != 'λ') {
+                for(let way in this.config.ways) {
+                    if(way == currWay.slice(0, -1)) {
+                        isValue = false;
+                    }
+                }
+                if(isValue) {
+                    currResult += currWay.slice(0, -1);
+                }
             }
-            this.buildTree(result['S'][currWay], currWay, currWay.slice(0, 1), this.config.limit);
+
+            result[this.config.start][currWay] = {
+                result: currResult
+            }
+            this.buildTree(result[this.config.start][currWay], currWay, currResult, this.config.limit);
         })
         
 

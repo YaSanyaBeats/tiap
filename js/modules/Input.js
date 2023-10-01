@@ -2,6 +2,9 @@ class Input {
     constructor() {
         this.gram = document.querySelector('#gram-form');
         this.limitInput = document.querySelector('#limit-input');
+        this.termInput = document.querySelector('#term-alphabet');
+        this.notTermInput = document.querySelector('#not-term-alphabet');
+        this.startInput = document.querySelector('#start-input');
     }
 
     getGram() {
@@ -29,10 +32,25 @@ class Input {
         return this.limitInput.value;
     }
 
+    getTerm() {
+        return this.termInput.value.split(' ');
+    }
+
+    getNoTerm() {
+        return this.notTermInput.value.split(' ');
+    }
+
+    getStart() {
+        return this.startInput.value;
+    }
+
     getAll() {
         return {
             'ways': this.getGram(),
             'limit': this.getLimit(),
+            'term': this.getTerm(),
+            'notTerm': this.getNoTerm(),
+            'start': this.getStart()
         }
     }
 
