@@ -46,4 +46,13 @@ function bindListenersOnForms() {
     })
 }
 
-export default bindListenersOnForms;
+function showError(error) {
+    //Alerts
+    const errorToastNode = document.querySelector('#errorToast');
+    errorToastNode.querySelector('.toast-body').innerText = error;
+
+    const errorToast = bootstrap.Toast.getOrCreateInstance(errorToastNode);
+    errorToast.show();
+}
+
+export {bindListenersOnForms, showError};

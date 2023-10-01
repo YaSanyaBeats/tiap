@@ -19,14 +19,10 @@ class RenderTree {
         }
         let treeHTML = '<ul>';
         for(let key in result) {
-            if(key == 'result') {
-                continue;
-            }
             treeHTML += `
                 <li>
                     <span class="tf-nc">
-                        <div class="tree-key">Путь: ${key}</div>
-                        <div class="tree-value">Результат:&nbsp;${result[key] ? result[key]['result'] : ''}</div>
+                        <div class="tree-key">Результат<br>${key}</div>
                     </span>
                     ${this.buildTree(result[key])}
                 </li>

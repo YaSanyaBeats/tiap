@@ -1,5 +1,5 @@
 import RenderTree from './modules/Render.js';
-import bindListenersOnForms from './modules/UI.js';
+import {bindListenersOnForms, showError} from './modules/UI.js';
 import Input from './modules/Input.js';
 import Calculator from './modules/Calculator.js';
 
@@ -11,18 +11,22 @@ let input = new Input(gramForm);
 let calculator = new Calculator();
 
 const startButton = document.querySelector('#start-button');
+
+
 startButton.addEventListener('click', (event) => {
-    try{
-        calculator.setConfig(input.getAll());
-        console.log(input.getAll());
-        let result = calculator.start();
-    
+    calculator.setConfig(input.getAll());
+    let calcResult = calculator.start();
+    console.log(calcResult);
+
+    if(calcResult.body != 'error') {
         const outputNode = document.querySelector('.result');
         let renderTree = new RenderTree(outputNode);
-        renderTree.update(result);
+        renderTree.update(calcResult.body);
+        
+        /*const outputNode = document.querySelector('.result');
+        outputNode.innerText = calcResult.body;*/
     }
-    catch(err) {
-        alert('Ошибка валидации');
-        console.log(err);
+    else {
+        showError(calcResult.error);
     }
 })
