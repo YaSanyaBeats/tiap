@@ -20,7 +20,7 @@ startButton.addEventListener('click', (event) => {
 
     if(calcResult.body != 'error') {
         const outputNode = document.querySelector('.result');
-        let renderTree = new RenderTree(outputNode);
+        let renderTree = new RenderTree(outputNode, input.getAll());
         renderTree.update(calcResult.body);
         
         /*const outputNode = document.querySelector('.result');

@@ -1,7 +1,8 @@
 class RenderTree {
-    constructor(root) {
+    constructor(root, config) {
         this.root = root;
         this.result = '';
+        this.config = config;
     }
 
     isEmptyNode(result) {
@@ -19,10 +20,22 @@ class RenderTree {
         }
         let treeHTML = '<ul>';
         for(let key in result) {
+            let resutlStr = key.replaceAll('λ', '');
+            let resultLength = 0;
+            for(let symbol of key) {
+                if(this.config.notTerm.includes(symbol)) {
+                    resultLength++;
+                }
+            }
+            if(resultLength > this.config.max || resultLength < this.config.min) {
+                this.buildTree(result[key]);
+                console.log(key);
+                continue;
+            }
             treeHTML += `
                 <li>
                     <span class="tf-nc">
-                        <div class="tree-key">Результат<br>${key}</div>
+                        <div class="tree-key">Результат<br>${resutlStr}</div>
                     </span>
                     ${this.buildTree(result[key])}
                 </li>

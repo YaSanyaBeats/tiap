@@ -19,7 +19,7 @@
 
         <div class="row mt-5">
             <div class="col-6">
-                <h2>Терминальный алфавит</h2>
+                <h2>Нетерминальный алфавит</h2>
                 <div class="row mt-2">
                     <div class="col-12 mt-2">
                         <input type="text" class="form-control gram-start" id="term-alphabet">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <h2>Нетерминальный алфавит</h2>
+                <h2>Терминальный алфавит</h2>
                 <div class="row mt-2">
                     <div class="col-12 mt-2">
                         <input type="text" class="form-control gram-start" id="not-term-alphabet">
@@ -67,6 +67,20 @@
                     </div>
                     <div class="col-2">
                         <input min=1 type="number" class="form-control" id="limit-input" value="1">
+                    </div>
+
+                    <div class="col-auto d-flex align-items-center">
+                        <span>Минимальный диапазон:</span>
+                    </div>
+                    <div class="col-2">
+                        <input min=0 type="number" class="form-control" id="diap-min-input" value="1">
+                    </div>
+
+                    <div class="col-auto d-flex align-items-center">
+                        <span>Максимальный диапазон:</span>
+                    </div>
+                    <div class="col-2">
+                        <input min=0 type="number" class="form-control" id="diap-max-input" value="1">
                     </div>
                 </div>
             </div>

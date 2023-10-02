@@ -5,6 +5,8 @@ class Input {
         this.termInput = document.querySelector('#term-alphabet');
         this.notTermInput = document.querySelector('#not-term-alphabet');
         this.startInput = document.querySelector('#start-input');
+        this.minDiapInput = document.querySelector('#diap-min-input');
+        this.maxDiapInput = document.querySelector('#diap-max-input');
     }
 
     getGram() {
@@ -44,13 +46,23 @@ class Input {
         return this.startInput.value;
     }
 
+    getMin() {
+        return this.minDiapInput.value;
+    }
+
+    getMax() {
+        return this.maxDiapInput.value;
+    }
+
     getAll() {
         return {
             'ways': this.getGram(),
             'limit': this.getLimit(),
             'term': this.getTerm(),
             'notTerm': this.getNoTerm(),
-            'start': this.getStart()
+            'start': this.getStart(),
+            'min': this.getMin(),
+            'max': this.getMax()
         }
     }
 

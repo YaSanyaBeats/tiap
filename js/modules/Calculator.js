@@ -79,13 +79,13 @@ class Calculator{
         console.log(this.config);
 
         if(!this.isValidSymbols(this.config.term)) {
-            this.error = 'Невалидный символ в терминальном алфавите';
+            this.error = 'Невалидный символ в нетерминальном алфавите';
             return false;
         }
 
 
         if(!this.isValidSymbols(this.config.notTerm)) {
-            this.error = 'Невалидный символ в нетерминальном алфавите';
+            this.error = 'Невалидный символ в терминальном алфавите';
             return false;
         }
 
@@ -106,6 +106,21 @@ class Calculator{
 
         if(!this.checkGram()) {
             this.error = 'Ошибка в грамматике';
+            return false;
+        }
+
+        if(this.config.min > this.config.max) {
+            this.error = 'Минимум больше максимума';
+            return false;
+        }
+
+        if(this.config.min != Math.ceil(this.config.min)) {
+            this.error = 'Минимум должен быть целым числом';
+            return false;
+        }
+
+        if(this.config.max != Math.ceil(this.config.max)) {
+            this.error = 'Максимум должен быть целым числом';
             return false;
         }
 
